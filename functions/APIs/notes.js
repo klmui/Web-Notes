@@ -16,6 +16,7 @@
 
 const { db } = require('../util/admin');
 
+// GET all notes from DB
 exports.getAllNotes = (request, response) => {
   db 
     .collection('notes')
@@ -37,3 +38,31 @@ exports.getAllNotes = (request, response) => {
       return response.status(500).json({error: err.code});
     });
 }
+
+// POST route
+exports.postOneNote = (request, response) => {
+  if (request.body.body.trim() === '') {
+    return response.status(400).json({ body: 'Must not be empty' });
+  }
+
+  if(request.body.title.trim() === '') {
+    return response.status(400).json({ title: 'Must not be empty' });
+  }
+
+  const newNoteItem = {
+    title: request.body.title,
+    body: request.body.body,
+    createdAt: new Date().toISOString()
+  }
+  db
+    .collection('todos')
+    .add(newNoteItem)
+    .then((doc) => {
+      const responseNoteItem = newNoteItem;
+      responseNoteItem.id = doc.id;
+      return response.json(responseNoteItem);
+    }).catch((err) => {
+      response.status(500).json({ error: 'Something went wrong' });
+      console.log(err);
+    });
+};
