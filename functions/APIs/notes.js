@@ -86,3 +86,22 @@ exports.deleteNote = (request, response) => {
           return response.status(500).json({ error: err.code });
       });
 };
+
+// PUT route
+exports.editNote = (request, response) => {
+  // Should not allow user to create these fields
+  if (request.body.noteId || request.body.createdAt) {
+    response.status(403).json({message: 'Not allowed to edit'});
+  }
+  let document = db.collection('notes').doc(`${request.params.noteId}`);
+  document.update(request.body)
+    .then(() => {
+      response.json({message: 'Updated successfully'});
+    })
+    .catch((err) => {
+      console.error(err);
+      return response.status(500).json({
+        error: err.code
+      });
+    });
+};
