@@ -10,7 +10,8 @@ const {
 } = require('./APIs/notes');
 
 const {
-  loginUser
+  loginUser,
+  signUpUser
 } = require('./APIs/users');
 
 // NOTE API
@@ -27,7 +28,8 @@ app.delete('/note/:noteId', deleteNote);
 app.put('/note/:noteId', editNote);
 
 // USER API
-// POST user
 app.post('/login', loginUser);
+
+app.post('/signup', signUpUser);
 
 exports.api = functions.https.onRequest(app);

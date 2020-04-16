@@ -3,7 +3,7 @@ Sign up and start tracking all of the things you need to do! This is my first ap
 
 ### Takeaways
 - Gained more experience with Firebase, Firestore, and authentication
-- More Express, Node, and React experience
+- More Express, Node, and React + Material UI experience
 - Using Firebase functions was interesting because it provides a way for me to create my own API
 - Practice with Postman
 
