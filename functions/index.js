@@ -6,7 +6,8 @@ const {
     getAllNotes,
     postOneNote,
     deleteNote,
-    editNote
+    editNote,
+    getOneNote
 } = require('./APIs/notes');
 
 // middleware
@@ -22,16 +23,18 @@ const {
 
 // NOTE API
 // Go to its Firebase function, paste the link in Chrome and add /notes at the end to get res
-app.get('/notes', getAllNotes);
+app.get('/notes', auth, getAllNotes);
+
+app.get('/note/:noteId', auth, getOneNote);
 
 // POST route
-app.post('/note', postOneNote);
+app.post('/note', auth, postOneNote);
 
 // DELETE route
-app.delete('/note/:noteId', deleteNote);
+app.delete('/note/:noteId', auth, deleteNote);
 
 // PUT route
-app.put('/note/:noteId', editNote);
+app.put('/note/:noteId', auth, editNote);
 
 // USER API
 app.post('/login', loginUser);
