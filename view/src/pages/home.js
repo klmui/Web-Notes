@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Account from '../components/account';
-import Note from '../components/note';
+import Todo from '../components/note';
 
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -70,7 +70,7 @@ class home extends Component {
 		this.setState({ render: true });
 	};
 
-	loadNotePage = (event) => {
+	loadTodoPage = (event) => {
 		this.setState({ render: false });
 	};
 
@@ -134,7 +134,7 @@ class home extends Component {
 					<AppBar position="fixed" className={classes.appBar}>
 						<Toolbar>
 							<Typography variant="h6" noWrap>
-								Web Notes
+								TodoApp
 							</Typography>
 						</Toolbar>
 					</AppBar>
@@ -156,12 +156,12 @@ class home extends Component {
 						</center>
 						<Divider />
 						<List>
-							<ListItem button key="Note" onClick={this.loadNotePage}>
+							<ListItem button key="Todo" onClick={this.loadTodoPage}>
 								<ListItemIcon>
 									{' '}
 									<NotesIcon />{' '}
 								</ListItemIcon>
-								<ListItemText primary="Note" />
+								<ListItemText primary="Todo" />
 							</ListItem>
 
 							<ListItem button key="Account" onClick={this.loadAccountPage}>
@@ -182,9 +182,11 @@ class home extends Component {
 						</List>
 					</Drawer>
 
-					<div>{this.state.render ? <Account /> : <Note />}</div>
+					<div>{this.state.render ? <Account /> : <Todo />}</div>
 				</div>
 			);
 		}
 	}
 }
+
+export default withStyles(styles)(home);
