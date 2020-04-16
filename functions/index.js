@@ -1,17 +1,10 @@
-// const functions = require('firebase-functions');
-
-// Creates Firebase function. You can paste the function's link in Chrome
-// to get the reponse
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//      response.send("Hello from Firebase!");
-// });
-
 const functions = require('firebase-functions');
 const app = require('express')();
 
 const {
-    getAllTodos
-} = require('./APIs/todos')
+    getAllNotes
+} = require('./APIs/notes')
 
-app.get('/todos', getAllTodos);
+// Go to its Firebase function, paste the link in Chrome and add /notes at the end to get res
+app.get('/notes', getAllNotes);
 exports.api = functions.https.onRequest(app);

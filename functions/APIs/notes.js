@@ -1,5 +1,5 @@
-exports.getAllTodos = (request, response) => {
-  todos = [
+exports.getAllNotes = (request, response) => {
+  notes = [
     {
       'id': '1',
       'title': 'greeting',
@@ -11,5 +11,5 @@ exports.getAllTodos = (request, response) => {
       'body': 'Hello world 2 from kenny'
     }
   ]
-  return response.json(todos);
+  return response.json(notes);
 }
