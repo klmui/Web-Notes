@@ -9,9 +9,13 @@ const {
     editNote
 } = require('./APIs/notes');
 
+// middleware
+const auth = require('./util/auth');
+
 const {
   loginUser,
-  signUpUser
+  signUpUser,
+  uploadProfilePhoto
 } = require('./APIs/users');
 
 // NOTE API
@@ -31,5 +35,7 @@ app.put('/note/:noteId', editNote);
 app.post('/login', loginUser);
 
 app.post('/signup', signUpUser);
+
+app.post('/user/image', auth, uploadProfilePhoto);
 
 exports.api = functions.https.onRequest(app);

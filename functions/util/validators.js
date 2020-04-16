@@ -19,7 +19,7 @@ const isEmail = (email) => {
 	else return false;
 };
 
-exports.validateLoginData = (data) => {
+exports.validateSignUpData = (data) => {
   let errors = {};
 
 	if (isEmpty(data.email)) {
