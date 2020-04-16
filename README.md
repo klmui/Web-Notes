@@ -11,4 +11,5 @@ Sign up and start tracking all of the things you need to do! This is my first ap
 - Firebase initialization: 'firebase init'
 - To deploy to firebase: 'firebase deploy'
 - Run locally: 'firebase serve'
+- Run React app: 'cd view, yarn start'
 - Create react app: 'create-react-app view'
