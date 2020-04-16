@@ -4,14 +4,17 @@ const app = require('express')();
 // Imports
 const {
     getAllNotes,
-    postOneNote
+    postOneNote,
+    deleteNote
 } = require('./APIs/notes');
 
 // Go to its Firebase function, paste the link in Chrome and add /notes at the end to get res
 app.get('/notes', getAllNotes);
 
-
 // POST route
 app.post('/note', postOneNote);
+
+// DELETE route
+app.delete('/note/:noteId', deleteNote);
 
 exports.api = functions.https.onRequest(app);

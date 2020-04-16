@@ -55,7 +55,7 @@ exports.postOneNote = (request, response) => {
     createdAt: new Date().toISOString()
   }
   db
-    .collection('todos')
+    .collection('notes')
     .add(newNoteItem)
     .then((doc) => {
       const responseNoteItem = newNoteItem;
@@ -65,4 +65,24 @@ exports.postOneNote = (request, response) => {
       response.status(500).json({ error: 'Something went wrong' });
       console.log(err);
     });
+};
+
+// DELETE route
+exports.deleteNote = (request, response) => {
+  const document = db.doc(`/notes/${request.params.noteId}`);
+  document
+      .get()
+      .then((doc) => {
+          if (!doc.exists) {
+              return response.status(404).json({ error: 'Note not found' })
+          }
+          return document.delete();
+      })
+      .then(() => {
+          response.json({ message: 'Delete successful' });
+      })
+      .catch((err) => {
+          console.error(err);
+          return response.status(500).json({ error: err.code });
+      });
 };
