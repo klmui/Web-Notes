@@ -20,6 +20,7 @@ const { db } = require('../util/admin');
 exports.getAllNotes = (request, response) => {
   db 
     .collection('notes')
+    .where('username', '==', request.user.username)
     .orderBy('createdAt', 'desc')
     .get()
     .then((data) => {
@@ -52,6 +53,7 @@ exports.postOneNote = (request, response) => {
   const newNoteItem = {
     title: request.body.title,
     body: request.body.body,
+    username: request.user.username,
     createdAt: new Date().toISOString()
   }
   db
@@ -75,6 +77,9 @@ exports.deleteNote = (request, response) => {
       .then((doc) => {
           if (!doc.exists) {
               return response.status(404).json({ error: 'Note not found' })
+          }
+          if(doc.data().username !== request.user.username){
+            return response.status(403).json({error:"UnAuthorized"})
           }
           return document.delete();
       })

@@ -25,7 +25,7 @@ const {
 // Go to its Firebase function, paste the link in Chrome and add /notes at the end to get res
 app.get('/notes', auth, getAllNotes);
 
-app.get('/note/:noteId', auth, getOneNote);
+//app.get('/note/:noteId', auth, getOneNote);
 
 // POST route
 app.post('/note', auth, postOneNote);
