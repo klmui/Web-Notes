@@ -165,4 +165,5 @@ class login extends Component {
 	}
 }
 
+// styles + class component
 export default withStyles(styles)(login);
