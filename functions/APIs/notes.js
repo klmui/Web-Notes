@@ -27,7 +27,7 @@ exports.getAllNotes = (request, response) => {
       let notes = [];
       data.forEach((doc) => {
         notes.push({
-          todoId: doc.id,
+          noteId: doc.id,
           title: doc.data().title,
           body: doc.data().body,
           createdAt: doc.data().createdAt
@@ -38,7 +38,31 @@ exports.getAllNotes = (request, response) => {
       console.log(err);
       return response.status(500).json({error: err.code});
     });
-}
+};
+
+exports.getOneNote = (request, response) => {
+	db
+        .doc(`/notes/${request.params.noteId}`)
+		.get()
+		.then((doc) => {
+			if (!doc.exists) {
+				return response.status(404).json(
+                    { 
+                        error: 'Note not found' 
+                    });
+            }
+            if(doc.data().username !== request.user.username){
+                return response.status(403).json({error:"UnAuthorized"})
+            }
+			NoteData = doc.data();
+			NoteData.noteId = doc.id;
+			return response.json(NoteData);
+		})
+		.catch((err) => {
+			console.error(err);
+			return response.status(500).json({ error: error.code });
+		});
+};
 
 // POST route
 exports.postOneNote = (request, response) => {
