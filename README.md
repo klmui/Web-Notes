@@ -11,5 +11,6 @@ Sign up and start tracking all of the things you need to do! This is my first ap
 - Firebase initialization: 'firebase init'
 - To deploy to firebase: 'firebase deploy'
 - Run locally: 'firebase serve'
+  - This is the link after the command: ✔ functions[api]: http function initialized (http://localhost:5000/todoapp-<project-id>/<region-name>/api).
 - Run React app: 'cd view, yarn start'
 - Create react app: 'create-react-app view'
